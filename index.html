@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Menù – Zucchero e Farina</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:      #1a0f08;
+    --ink-mid:  #2e1a0a;
+    --gold:     #c97820;
+    --gold-lt:  #e8a030;
+    --cream:    #f5ede0;
+    --muted:    #9a7a50;
+    --dim:      #6a5040;
+    --saffron:  #c97820;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    font-family: 'Jost', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+    min-height: 100vh;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 540px;
+    background: var(--ink);
+    border: 1px solid rgba(201,120,32,0.5);
+    padding: 48px 40px 40px;
+    position: relative;
+    animation: fadeIn 0.8s ease both;
+  }
+
+  /* Art deco corner ornaments */
+  .card::before, .card::after,
+  .corner-bl, .corner-br {
+    content: '';
+    position: absolute;
+    width: 36px; height: 36px;
+    border-color: rgba(201,120,32,0.5);
+    border-style: solid;
+  }
+  .card::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+  .card::after  { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+  .corner-bl    { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
+  .corner-br    { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+  /* ── HEADER ── */
+  .header { text-align: center; margin-bottom: 36px; }
+
+  .logo-circle {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+  .logo-circle::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(201,120,32,0.35);
+  }
+  .logo-z {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-right: -4px;
+  }
+  .logo-f {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .brand-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px; font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .brand-sub {
+    font-size: 10px; font-weight: 400;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Ornament divider */
+  .divider {
+    display: flex; align-items: center;
+    gap: 12px; margin: 20px 0;
+  }
+  .divider-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,120,32,0.5));
+  }
+  .divider-line.r {
+    background: linear-gradient(to left, transparent, rgba(201,120,32,0.5));
+  }
+  .divider-gem {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── SEZIONI ── */
+  .section { margin-bottom: 8px; }
+
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 16px; margin-top: 28px;
+  }
+  .section-line {
+    flex: 1; height: 1px;
+    background: rgba(201,120,32,0.25);
+  }
+  .section-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ── VOCI ── */
+  .item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(201,120,32,0.1);
+    transition: background 0.2s;
+  }
+  .item:last-child { border-bottom: none; }
+
+  .item-left { flex: 1; }
+
+  .item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 400;
+    color: var(--cream);
+    line-height: 1.3;
+  }
+  .item-desc {
+    font-size: 12px; font-weight: 300;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 400;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .item-price .unit {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+
+  /* ── ZAFFERANO BANNER ── */
+  .saffron-box {
+    margin: 32px 0 28px;
+    border: 1px solid rgba(201,120,32,0.45);
+    background: rgba(201,120,32,0.07);
+    padding: 20px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .saffron-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,120,32,0.08) 0%, transparent 60%);
+  }
+  .saffron-label {
+    font-size: 10px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .saffron-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-style: italic;
+    color: var(--cream);
+  }
+  .saffron-text strong {
+    color: var(--gold-lt);
+    font-style: normal; font-weight: 600;
+  }
+  .saffron-sub {
+    font-size: 11px; font-weight: 300;
+    color: var(--muted); margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201,120,32,0.15);
+  }
+  .footer-info {
+    font-size: 13px; font-weight: 300;
+    color: var(--muted); line-height: 2;
+    letter-spacing: 0.5px;
+  }
+  .footer-info span { color: var(--gold); }
+  .footer-note {
+    margin-top: 14px;
+    font-size: 10px; font-weight: 300;
+    color: var(--dim); letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 36px 24px 32px; }
+    .brand-name { font-size: 30px; }
+    .item-name { font-size: 16px; }
+    .item-price { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="corner-bl"></div>
+  <div class="corner-br"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-circle">
+      <span class="logo-z">Z</span>
+      <span class="logo-f">F</span>
+    </div>
+    <div class="brand-name">Zucchero e Farina</div>
+    <div class="brand-sub">Pasta Fresca · Dolci Artigianali</div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line r"></div>
+    </div>
+  </div>
+
+  <!-- PASTA LUNGA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">Pasta Lunga</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Tagliatelle</div></div>
+      <div class="item-price">14,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Tagliolini</div></div>
+      <div class="item-price">14,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Pappardelle</div></div>
+      <div class="item-price">14,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Paglia e Fieno</div></div>
+      <div class="item-price">15,00 <span class="unit">/kg</span></div>
+    </div>
+  </div>
+
+  <!-- PASTA RIPIENA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">Pasta Ripiena</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Tortelli</div>
+        <div class="item-desc">pesto e patate</div>
+      </div>
+      <div class="item-price">17,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Ravioli</div>
+        <div class="item-desc">ricotta e spinaci</div>
+      </div>
+      <div class="item-price">17,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Mezzelune</div>
+        <div class="item-desc">carciofi, piselli e ricotta</div>
+      </div>
+      <div class="item-price">20,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Cappellacci</div>
+        <div class="item-desc">melanzana, pomodorini ciliegia e feta greca</div>
+      </div>
+      <div class="item-price">21,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Balanzoni</div>
+        <div class="item-desc">ricotta e mortadella</div>
+      </div>
+      <div class="item-price">21,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Tortellini di Carne</div>
+        <div class="item-desc">lonza, crudo di Parma, mortadella di Bologna e parmigiano</div>
+      </div>
+      <div class="item-price">25,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
+        <div class="item-name">Plin</div>
+        <div class="item-desc">pollo, salsiccia, spinaci e ricotta</div>
+      </div>
+      <div class="item-price">27,00 <span class="unit">/kg</span></div>
+    </div>
+  </div>
+
+  <!-- GNOCCHI -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">Gnocchi</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Gnocchi Bianchi</div></div>
+      <div class="item-price">11,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Gnocchi alla Zucca</div></div>
+      <div class="item-price">12,00 <span class="unit">/kg</span></div>
+    </div>
+  </div>
+
+  <!-- DOLCI -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <span class="section-label">Dolci</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Crostata alle Mele</div></div>
+      <div class="item-price">27,00</div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Crostata della Nonna</div></div>
+      <div class="item-price">27,00</div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Crostata Marmellata</div></div>
+      <div class="item-price">28,00</div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Crostata Pera e Cioccolato</div></div>
+      <div class="item-price">29,00</div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Crostata ai Frutti di Bosco</div></div>
+      <div class="item-price">30,00</div>
+    </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Crostata alle Fragole</div></div>
+      <div class="item-price">28,00</div>
+    </div>
+  </div>
+
+  <!-- SAFFRON BOX -->
+  <div class="saffron-box">
+    <div class="saffron-label">🌸 Specialità</div>
+    <div class="saffron-text">Impasto con <strong>Zafferano Iraniano</strong></div>
+    <div class="saffron-sub">+ 2,00 € al kg · disponibile su qualsiasi formato di pasta</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-info">
+      <span>📍</span> Via Cantoni, 3<br/>
+      <span>📱</span> WhatsApp 353 4840652
+    </div>
+    <div class="footer-note">
+      Tutti i prodotti sono freschi e fatti a mano ogni giorno<br/>
+      Ordini su WhatsApp · Prezzi al kg
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
