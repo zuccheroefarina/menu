@@ -179,8 +179,8 @@
   /* ── ZAFFERANO BANNER ── */
   .saffron-box {
     margin: 32px 0 28px;
-    border: 1px solid rgba(201,120,32,0.45);
-    background: rgba(201,120,32,0.07);
+    border: 1px solid rgba(201,120,32,0.8);
+    background: rgba(201,120,32,0.18);
     padding: 20px 24px;
     text-align: center;
     position: relative;
@@ -192,23 +192,26 @@
     background: linear-gradient(135deg, rgba(201,120,32,0.08) 0%, transparent 60%);
   }
   .saffron-label {
-    font-size: 10px; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 8px;
+    font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--gold-lt);
+    margin-bottom: 10px;
+    font-weight: 500;
   }
   .saffron-text {
     font-family: 'Playfair Display', serif;
-    font-size: 20px; font-style: italic;
-    color: var(--cream);
+    font-size: 23px; font-style: italic;
+    color: #ffffff;
+    line-height: 1.4;
   }
   .saffron-text strong {
     color: var(--gold-lt);
     font-style: normal; font-weight: 600;
   }
   .saffron-sub {
-    font-size: 11px; font-weight: 300;
-    color: var(--muted); margin-top: 6px;
-    letter-spacing: 1px;
+    font-size: 14px; font-weight: 400;
+    color: var(--cream); margin-top: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
   }
 
   /* ── FOOTER ── */
@@ -225,9 +228,10 @@
   .footer-info span { color: var(--gold); }
   .footer-note {
     margin-top: 14px;
-    font-size: 10px; font-weight: 300;
-    color: var(--dim); letter-spacing: 1px;
+    font-size: 13px; font-weight: 300;
+    color: var(--cream); letter-spacing: 0.5px;
     font-style: italic;
+    line-height: 1.8;
   }
 
   @keyframes fadeIn {
@@ -333,10 +337,17 @@
     </div>
     <div class="item">
       <div class="item-left">
+        <div class="item-name">Balanzoni Rossi</div>
+        <div class="item-desc">ricotta e mortadella</div>
+      </div>
+      <div class="item-price">21,00 <span class="unit">/kg</span></div>
+    </div>
+    <div class="item">
+      <div class="item-left">
         <div class="item-name">Tortellini di Carne</div>
         <div class="item-desc">lonza, crudo di Parma, mortadella di Bologna e parmigiano</div>
       </div>
-      <div class="item-price">25,00 <span class="unit">/kg</span></div>
+      <div class="item-price">30,00 <span class="unit">/kg</span></div>
     </div>
     <div class="item">
       <div class="item-left">
@@ -362,6 +373,10 @@
       <div class="item-left"><div class="item-name">Gnocchi alla Zucca</div></div>
       <div class="item-price">12,00 <span class="unit">/kg</span></div>
     </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Gnocchi di Barbabietola</div></div>
+      <div class="item-price">12,00 <span class="unit">/kg</span></div>
+    </div>
   </div>
 
   <!-- DOLCI -->
@@ -376,11 +391,11 @@
       <div class="item-price">27,00</div>
     </div>
     <div class="item">
-      <div class="item-left"><div class="item-name">Crostata della Nonna</div></div>
+      <div class="item-left"><div class="item-name">Torta della Nonna</div></div>
       <div class="item-price">27,00</div>
     </div>
     <div class="item">
-      <div class="item-left"><div class="item-name">Crostata Marmellata</div></div>
+      <div class="item-left"><div class="item-name">Crostata alla Marmellata Fresca</div></div>
       <div class="item-price">28,00</div>
     </div>
     <div class="item">
@@ -395,12 +410,16 @@
       <div class="item-left"><div class="item-name">Crostata alle Fragole</div></div>
       <div class="item-price">28,00</div>
     </div>
+    <div class="item">
+      <div class="item-left"><div class="item-name">Strudel di Mele</div></div>
+      <div class="item-price">20,00</div>
+    </div>
   </div>
 
   <!-- SAFFRON BOX -->
   <div class="saffron-box">
     <div class="saffron-label">🌸 Specialità</div>
-    <div class="saffron-text">Impasto con <strong>Zafferano Iraniano</strong></div>
+    <div class="saffron-text">Impasto con <strong>Zafferano</strong></div>
     <div class="saffron-sub">+ 2,00 € al kg · disponibile su qualsiasi formato di pasta</div>
   </div>
 
